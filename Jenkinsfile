@@ -8,15 +8,13 @@ pipeline  {
                     chmod +x ./scripts/*.sh
                     docker pull hadolint/hadolint
                 '''
+                   }
             }
-        }
-        stage('Build Image') {
-            steps {
-                script {
-                    sh './scripts/build-docker-image.sh'
+       stage('Lint HTML') {
+             steps {
+                 sh 'tidy -q -e static-html-directory/*.html'
+                    }
                 }
-            }
-   }    
           
    }
 }
