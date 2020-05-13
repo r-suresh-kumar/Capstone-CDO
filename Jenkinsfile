@@ -23,5 +23,14 @@ pipeline  {
                         }
                     }
            }
-   }
+ 
+        stage('Upload Image') {
+              steps {
+                 script {
+                    sh './scripts/upload-docker-image.sh'
+                         }
+                    }
+            }
+        
+    }
 }
