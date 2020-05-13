@@ -7,7 +7,7 @@ WORKDIR /static-html-directory
 COPY static-html-directory /usr/share/nginx/html
 
 # Expose port 80
-EXPOSE 8088:80
+EXPOSE 80
 
 # Run nginx container at launch
 # https://hub.docker.com/_/nginx)
