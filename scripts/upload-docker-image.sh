@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
+# This file tags and uploads an image to Docker Hub
 
-# Upload docker image to docker registry
-docker login --username $DOCKER_CREDS_USR --password $DOCKER_CREDS_PSW
-docker push $DOCKER_REPO:$TAG
+# Step 1:
+# Create dockerpath
+# dockerpath=<your docker ID/path>
+dockerpath="rsureshk/nginx"
+
+# Step 2:  
+# Authenticate & tag
+echo "Docker ID and Image: $dockerpath"
+docker login &&\
+    docker image tag nginx $dockerpath
+    
+# Step 3:
+# Push image to a docker repository
+docker image push $dockerpath
