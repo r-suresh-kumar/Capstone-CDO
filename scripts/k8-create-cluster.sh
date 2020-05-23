@@ -3,10 +3,10 @@
 eksctl create cluster \
  --name $CLUSTER \
  --region $REGION \
- --zones us-east-1a \
- --zones us-east-1b \
- --zones us-east-1c \
- --zones us-east-1d \
+ --zones us-west-2a \
+ --zones us-west-2b \
+ --zones us-west-2c \
+ --zones us-west-2d \
  --version 1.15 \
  --nodegroup-name workers \
  --node-ami auto \
