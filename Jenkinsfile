@@ -8,7 +8,7 @@ pipeline  {
 
             K8_CONFIG_FILE = 'k8-deployment-config.yml'
             CLUSTER = 'capstone-cluster'
-            REGION = 'us-west-2
+            REGION = 'us-west-2'
     }
             
     agent any
