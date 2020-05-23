@@ -47,6 +47,20 @@ pipeline  {
                 }
             }        
         }
-            
+
+        stage('Create Cluster') {        
+            steps {
+                script {
+                    withAWS(credentials: 'aws-credentials', region: REGION) {
+                        sh '''
+                            ./scripts/get-docker-image.sh
+                            ./scripts/k8-create-cluster.sh
+                        '''
+                    }
+                }
+            }
+        }
+        
+        
     }
   }
