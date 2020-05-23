@@ -6,7 +6,7 @@ pipeline  {
             DOCKER_CREDS = credentials('dockerhub')
 
             K8_CONFIG_FILE = 'k8-deployment-config.yml'
-            CLUSTER = 'CI-CD-capstone-project-1'
+            CLUSTER = 'CI-CD-capstone-project'
             REGION = 'us-west-2'
         }    
 
