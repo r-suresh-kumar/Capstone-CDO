@@ -3,7 +3,7 @@ pipeline  {
             DOCKER_IMAGE = ''
             TAG = "1.0"
             DOCKER_REPO = "rsureshk/cloud-devops-capstone-project"
-            DOCKER_CREDS = credentials('docker-hub-credentials')
+            DOCKER_CREDS = credentials('dockerhub')
 
             K8_CONFIG_FILE = 'k8-deployment-config.yml'
             CLUSTER = 'capstone-cluster'
