@@ -9,11 +9,13 @@ pipeline  {
             CLUSTER = 'capstone-cluster'
             REGION = 'us-west-2'
         }    
-   agent any
+
+    agent any
         options {
             timestamps()
         }        
-  stages  {  
+  
+    stages  {  
        stage('Initialize') {
             steps {
                 sh '''
@@ -37,5 +39,14 @@ pipeline  {
                 }
             }
         }      
+        
+        stage('Upload Image') {
+            steps {
+                script {
+                    sh './scripts/upload-docker-image.sh'
+                }
+            }        
+        
+            
     }
   }
