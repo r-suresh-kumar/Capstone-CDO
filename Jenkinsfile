@@ -46,7 +46,7 @@ pipeline  {
                     sh './scripts/upload-docker-image.sh'
                 }
             }        
-        
+        }
             
     }
   }
