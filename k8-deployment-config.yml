@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-devops-capstone-project
+spec:
+  minReadySeconds: 60
+  progressDeadlineSeconds: 600
+  replicas: 8
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: cloud-devops-capstone-project
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: cloud-devops-capstone-project
+    spec:
+      containers:
+      - name: cloud-devops-capstone-project
+        image: rsureshk/cloud-devops-capstone-project:1.0
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservice-elb
+  labels:
+    app: cloud-devops-capstone-project
+spec:
+  type: LoadBalancer
+  ports:
+  - name: "http"
+    port: 8080
+    targetPort: 80
+  selector:
+    app: cloud-devops-capstone-project
