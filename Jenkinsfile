@@ -14,6 +14,10 @@ pipeline  {
                    }
             }
 
-        
+       stage('Lint HTML') {
+             steps {
+                     sh 'tidy -q -e static-html-directory/*.html'
+                   }
+             }
     }
 }
