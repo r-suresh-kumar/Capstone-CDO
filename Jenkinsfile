@@ -1,9 +1,23 @@
 pipeline  {
+    
+    environment {
+            DOCKER_IMAGE = ''
+            TAG = "1.0"
+            DOCKER_REPO = "rsureshk/cloud-devops-capstone-project"
+            DOCKER_CREDS = credentials('docker-hub-credentials')
+
+            K8_CONFIG_FILE = 'k8-deployment-config.yml'
+            CLUSTER = 'capstone-cluster'
+            REGION = 'us-west-2
+    }
+            
+    agent any
+
         options {
         timestamps()
-    }
-    agent any
-    stages  {
+        }
+        
+  stages  {
   
        stage('Initialize') {
             steps {
