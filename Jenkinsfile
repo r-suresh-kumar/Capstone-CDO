@@ -19,5 +19,14 @@ pipeline  {
                      sh 'tidy -q -e static-html-directory/*.html'
                    }
              }
+            
+            
+        stage('Build Image') {
+            steps {
+                script {
+                    sh './scripts/build-docker-image.sh'
+                }
+            }
+                
     }
 }
