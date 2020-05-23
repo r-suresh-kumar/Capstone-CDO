@@ -85,7 +85,7 @@ pipeline  {
             }
         }
 
-        stage('Deploy Cluster') {        
+        stage('Delete Cluster') {        
             steps {
                     withAWS(credentials: 'aws-credentials', region: REGION) {
                     sh './scripts/k8-delete-cluster.sh'
