@@ -6,7 +6,7 @@ pipeline  {
             DOCKER_CREDS = credentials('dockerhub')
 
             K8_CONFIG_FILE = 'k8-deployment-config.yml'
-            CLUSTER = 'capstone-cluster'
+            CLUSTER = 'udacity-capstone-cluster'
             REGION = 'us-west-2'
         }    
 
