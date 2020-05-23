@@ -1,5 +1,4 @@
 pipeline  {
-    
     environment {
             DOCKER_IMAGE = ''
             TAG = "1.0"
@@ -9,16 +8,12 @@ pipeline  {
             K8_CONFIG_FILE = 'k8-deployment-config.yml'
             CLUSTER = 'capstone-cluster'
             REGION = 'us-west-2'
-    }
-            
-    agent any
-
+        }    
+   agent any
         options {
-        timestamps()
-        }
-        
-  stages  {
-  
+            timestamps()
+        }        
+  stages  {  
        stage('Initialize') {
             steps {
                 sh '''
@@ -41,8 +36,6 @@ pipeline  {
                     sh './scripts/build-docker-image.sh'
                 }
             }
-                
+        }      
     }
   }
-}
-
