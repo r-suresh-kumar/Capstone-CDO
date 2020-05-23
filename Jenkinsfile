@@ -48,18 +48,7 @@ pipeline  {
             }        
         }
 
-        stage('Create Cluster') {
-            when {
-                beforeInput true
-                branch 'initialize-cluster'
-            }
-            input {
-                message 'Proceed with cluster creation?'
-                ok 'Yes, create cluster.'
-            }
-            options {
-                retry(2)
-            }
+        stage('Create Cluster') {        
             steps {
                 script {
                     withAWS(credentials: 'aws-credentials', region: REGION) {
@@ -67,13 +56,6 @@ pipeline  {
                             ./scripts/get-docker-image.sh
                             ./scripts/k8-initialize-cluster.sh
                         '''
-                    }
-                }
-            }
-            post {
-                success {
-                    withAWS(credentials: 'aws-credentials', region: REGION) {
-                        sh './scripts/k8-init-logging.sh'
                     }
                 }
             }
