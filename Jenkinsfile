@@ -6,7 +6,7 @@ pipeline  {
             DOCKER_CREDS = credentials('dockerhub')
 
             K8_CONFIG_FILE = 'k8-deployment-config.yml'
-            CLUSTER = 'PT-capstone'
+            CLUSTER = 'PTT-capstone'
             REGION = 'us-west-2'
         }    
 
@@ -85,6 +85,21 @@ pipeline  {
             }
         }
 
-    }
-      
-  }
+        stage('Delete Cluster') {        
+            steps {
+                    withAWS(credentials: 'aws-credentials', region: REGION) {
+                    sh './scripts/k8-delete-cluster.sh'
+                    }
+                }
+             }               
+        }
+    
+    post {
+        cleanup {
+            sh 'docker rmi $DOCKER_REPO:$TAG'
+        }
+    }    
+    
+    
+  }    
+  
