@@ -58,16 +58,7 @@ pipeline  {
                         '''
                     }
                 }
-            }
-            
-         post {
-                success {
-                    withAWS(credentials: 'aws-credentials', region: REGION) {
-                        sh './scripts/k8-init-logging.sh'
-                    }
-                }
-            }            
-            
+            }                      
         }
                 
         stage('Deploy Cluster') {        
@@ -76,14 +67,7 @@ pipeline  {
                     sh './scripts/k8-deploy-cluster.sh'
                     }
                 }
-            post {
-                success {
-                    withAWS(credentials: 'aws-credentials', region: REGION) {
-                        sh './scripts/k8-deployment-logging.sh'
-                    }
-                }
             }
-        }
 
     }
       
