@@ -6,7 +6,7 @@ pipeline  {
             DOCKER_CREDS = credentials('dockerhub')
 
             K8_CONFIG_FILE = 'k8-deployment-config.yml'
-            CLUSTER = 'project-capstone'
+            CLUSTER = 'PT-capstone'
             REGION = 'us-west-2'
         }    
 
@@ -58,7 +58,16 @@ pipeline  {
                         '''
                     }
                 }
-            }                      
+            }
+            
+         post {
+                success {
+                    withAWS(credentials: 'aws-credentials', region: REGION) {
+                        sh './scripts/k8-init-logging.sh'
+                    }
+                }
+            }            
+            
         }
                 
         stage('Deploy Cluster') {        
@@ -67,7 +76,14 @@ pipeline  {
                     sh './scripts/k8-deploy-cluster.sh'
                     }
                 }
+            post {
+                success {
+                    withAWS(credentials: 'aws-credentials', region: REGION) {
+                        sh './scripts/k8-deployment-logging.sh'
+                    }
+                }
             }
+        }
 
     }
       
