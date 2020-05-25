@@ -85,21 +85,8 @@ pipeline  {
             }
         }
 
-        stage('Delete Cluster') {        
-            steps {
-                    withAWS(credentials: 'aws-credentials', region: REGION) {
-                    sh './scripts/k8-delete-cluster.sh'
-                    }
-                }
-             }               
-        }
-    
-    post {
-        cleanup {
-            sh 'docker rmi $DOCKER_REPO:$TAG'
-        }
+               
+        
+        }  
     }    
-    
-    
-  }    
   
