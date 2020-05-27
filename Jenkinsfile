@@ -6,7 +6,7 @@ pipeline  {
             DOCKER_CREDS = credentials('dockerhub')
 
             K8_CONFIG_FILE = 'k8-deployment-config.yml'
-            CLUSTER = 'PT1-capstone'
+            CLUSTER = 'proj-capstone-final'
             REGION = 'us-west-2'
         }    
 
@@ -85,8 +85,6 @@ pipeline  {
             }
         }
 
-               
-        
-        }  
-    }    
-  
+    }
+      
+  }
